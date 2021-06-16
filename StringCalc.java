@@ -3,6 +3,8 @@ package JM;
 import java.util.*;
 import java.lang.*;
 
+import static com.sun.javafx.util.Utils.split;
+
 //Оставь надежду всяк сюда входящий.
 public class StringCalc {
     static Scanner console = new Scanner(System.in);
@@ -11,60 +13,68 @@ public class StringCalc {
 
         String intro = console.nextLine();
 
-        //Разбираем строку.
-        String[] symbols = intro.split("");
-        List<String> trimSymbols = new ArrayList<>();
-        for (int i = 0; i < symbols.length; i++) {
-            String s = symbols[i].trim();
-            if (s!=null && !s.equals("")) {
-                trimSymbols.add(s);
-            }
-            trimSymbols.toArray(new String[0]);
-        }
-        System.out.println(trimSymbols + "← все символы строки");
+        //Делим строку на переменные
+        String[] symbolsHub = new String[] {"+","-","*","/"};
+        String introHub[] = intro.split("");
+        System.out.println(Arrays.toString(introHub));
 
-        //Собираем список переменных без знаков.
-        List<String> nums = new ArrayList<>();
-        for (int i = 0; i < trimSymbols.size(); i++) {
-            String z = trimSymbols.get(i);
-            if (!z.equals("+") && !z.equals("-") && !z.equals("*") && !z.equals("/")) {
-                nums.add(z);
-            } else z = null;
-            nums.toArray(new String[0]);
+        Boolean plus = intro.contains("+"),
+                minus = intro.contains("-"),
+                multiply = intro.contains("*"),
+                divide = intro.contains("/");
+
+        List<String> SymbolsHub = new ArrayList<>();
+        for (int i = 0; i < introHub.length; i++) {
+
+            if (plus) {
+                SymbolsHub.add("+");
+            } else if (minus) {
+                SymbolsHub.add("-");
+            } else if (multiply) {
+                SymbolsHub.add("*");
+            } else if (divide) {
+                SymbolsHub.add("/");
+            }
+            SymbolsHub.toArray(new String[0]);
         }
-        System.out.println(nums + "← только цифры строки, без знаков");
+
+        System.out.println(SymbolsHub + "←Список мат. символов");
+
+        String values[] = Split.split(intro, SymbolsHub.get(0));
+
+        System.out.println(Arrays.toString(values) + "← Список переменных после деления");
 
         //Переводим в арабские, если в списке есть римские. Все строки собираем в список чисел.
-        List<Integer> cNums = new ArrayList<>();
-        for (int i = 0; i < nums.size(); i++) {
-            if (nums.get(i).contains("I") || nums.get(i).contains("V") || nums.get(i).contains("X")) {
-                int u = Roman.valueOf(nums.get(0)).toInt();
-                cNums.add(u);
+        List<Integer> Nums = new ArrayList<>();
+        for (int i = 0; i < values.length; i++) {
+            if (values[i].startsWith("I") || values[i].startsWith("V") || values[i].startsWith("X")) {
+                int u = ToArabic.valueOf(values[i]).toInt();
+                Nums.add(u);
             } else {
-                int u = Integer.parseInt(nums.get(i));
-                cNums.add(u);
+                int u = Integer.parseInt(values[i]);
+                Nums.add(u);
             }
-            cNums.toArray(new Integer[0]);
+            Nums.toArray(new Integer[0]);
         }
-        System.out.println(cNums + "← Все стало арабским и цифрами");
+        System.out.println(Nums + "← Все стало арабским и цифрами");
 
         //Квинтесенция алгебраичности
-        if (trimSymbols.get(1).equals("+")) {
+        if (SymbolsHub.get(0).equals("+")) {
             BeAlgebraic o = BeAlgebraic.PLUS;
-            System.out.println(o.action(cNums.get(0), cNums.get(1)));
-        } else if (trimSymbols.get(1).equals("-")){
+            System.out.println(o.action(Nums.get(0), Nums.get(1)));
+        } else if (SymbolsHub.get(0).equals("-")){
             BeAlgebraic o = BeAlgebraic.MINUS;
-            System.out.println(o.action(cNums.get(0), cNums.get(1)));
-        } else if (trimSymbols.get(1).equals("*")) {
+            System.out.println(o.action(Nums.get(0), Nums.get(1)));
+        } else if (SymbolsHub.get(0).equals("*")) {
             BeAlgebraic o = BeAlgebraic.PROD;
-            System.out.println(o.action(cNums.get(0), cNums.get(1)));
-        } else if (trimSymbols.get(1).equals("/")) {
-            BeAlgebraic o = BeAlgebraic.PROD;
-            System.out.println(o.action(cNums.get(0), cNums.get(1)));
-        } else {System.out.println("Ой-ой");}
+            System.out.println(o.action(Nums.get(0), Nums.get(1)));
+        } else if (SymbolsHub.get(0).equals("/")) {
+            BeAlgebraic o = BeAlgebraic.QUOT;
+            System.out.println(o.action(Nums.get(0), Nums.get(1)));
+        } else {System.out.println("Ой-ой, не могу осилить эту алгебраичность");}
 
-        if (trimSymbols.size()>3) {
+        /*if (trimSymbols.size()>3) {
             System.out.println("Я не умею в больше двух переменных");
-        }
+        }*/
     }
 }

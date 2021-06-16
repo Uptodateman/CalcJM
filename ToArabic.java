@@ -1,6 +1,6 @@
 package JM;
 
-enum Roman {
+enum ToArabic {
     I(1),
     II(2),
     III(3),
@@ -14,11 +14,12 @@ enum Roman {
 
     private final int value;
 
-    Roman(int value) {
+    ToArabic(int value) {
         this.value = value;
     }
 
     public int toInt() {
         return value;
     }
+
 }
