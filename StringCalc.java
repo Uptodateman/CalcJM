@@ -10,10 +10,14 @@ public class StringCalc {
 
     public static void main(String[] args) {
 
+        System.out.println("Здравствуй, дружок." +
+                "\nКак у тебя с алгебраичностью сегодня?" +
+                "\nПопробуй ввести две цифры в строке ниже. Можно римскими." +
+                "\n(Только от 1 до 10, ок?)");
+
         String intro = console.nextLine();
 
         //Делим строку на переменные
-        String[] symbolsHub = new String[] {"+","-","*","/"};
         String introHub[] = intro.split("");
 
         //Проверка
@@ -25,26 +29,27 @@ public class StringCalc {
                 divide = intro.contains("/");
 
         //Собираем список символов
-        List<String> SymbolsHub = new ArrayList<>();
+        String[] symbolsHub = new String[] {"+","-","*","/"};
+        List<String> symbols = new ArrayList<>();
         for (int i = 0; i < introHub.length; i++) {
             if (plus) {
-                SymbolsHub.add("+");
+                symbols.add("+");
             } else if (minus) {
-                SymbolsHub.add("-");
+                symbols.add("-");
             } else if (multiply) {
-                SymbolsHub.add("*");
+                symbols.add("*");
             } else if (divide) {
-                SymbolsHub.add("/");
+                symbols.add("/");
             } else {
-                System.out.println("!");
+                System.out.println("Хозяин, все сломалось!");
             }
-            SymbolsHub.toArray(new String[0]);
+            symbols.toArray(new String[0]);
         }
 
         //Проверка
         //System.out.println(SymbolsHub); ← На самом деле не работает как надо. Не знаю как это починить.
 
-        String values[] = Split.split(intro, SymbolsHub.get(0));
+        String values[] = Split.split(intro, symbols.get(0));
 
         //Проверка
         //System.out.println(Arrays.toString(values) + "← Список переменных после деления");
@@ -66,18 +71,18 @@ public class StringCalc {
         //System.out.println(Nums + "← Все стало арабским и цифрами");
 
         //Квинтесенция алгебраичности
-        if (SymbolsHub.get(0).equals("+")) {
+        if (plus) {
             BeAlgebraic o = BeAlgebraic.PLUS;
-            System.out.println(o.action(Nums.get(0), Nums.get(1)));
-        } else if (SymbolsHub.get(0).equals("-")){
+            System.out.println(o.action(Nums.get(0), Nums.get(1)) + " ←- Кажется, это число, которое ты загадал )");
+        } else if (minus){
             BeAlgebraic o = BeAlgebraic.MINUS;
-            System.out.println(o.action(Nums.get(0), Nums.get(1)));
-        } else if (SymbolsHub.get(0).equals("*")) {
+            System.out.println(o.action(Nums.get(0), Nums.get(1)) + " ←- Кажется, это число, которое ты загадал )");
+        } else if (multiply) {
             BeAlgebraic o = BeAlgebraic.PROD;
-            System.out.println(o.action(Nums.get(0), Nums.get(1)));
-        } else if (SymbolsHub.get(0).equals("/")) {
+            System.out.println(o.action(Nums.get(0), Nums.get(1)) + " ←- Кажется, это число, которое ты загадал )");
+        } else if (divide) {
             BeAlgebraic o = BeAlgebraic.QUOT;
-            System.out.println(o.action(Nums.get(0), Nums.get(1)));
+            System.out.println(o.action(Nums.get(0), Nums.get(1)) + " ←- Кажется, это число, которое ты загадал )");
         } else {System.out.println("Ой-ой, не могу осилить эту алгебраичность (");}
 
     }//main
