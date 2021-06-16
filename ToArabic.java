@@ -21,5 +21,4 @@ enum ToArabic {
     public int toInt() {
         return value;
     }
-
 }

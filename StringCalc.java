@@ -3,10 +3,9 @@ package JM;
 import java.util.*;
 import java.lang.*;
 
-import static com.sun.javafx.util.Utils.split;
-
 //Оставь надежду всяк сюда входящий.
 public class StringCalc {
+
     static Scanner console = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -18,7 +17,7 @@ public class StringCalc {
         String introHub[] = intro.split("");
 
         //Проверка
-        System.out.println(Arrays.toString(introHub) + "← Все введенные символы");
+        //System.out.println(Arrays.toString(introHub) + "← Все введенные символы");
 
         Boolean plus = intro.contains("+"),
                 minus = intro.contains("-"),
@@ -28,7 +27,6 @@ public class StringCalc {
         //Собираем список символов
         List<String> SymbolsHub = new ArrayList<>();
         for (int i = 0; i < introHub.length; i++) {
-
             if (plus) {
                 SymbolsHub.add("+");
             } else if (minus) {
@@ -44,12 +42,12 @@ public class StringCalc {
         }
 
         //Проверка
-        System.out.println(SymbolsHub + "←Список мат. символов");
+        //System.out.println(SymbolsHub); ← На самом деле не работает как надо. Не знаю как это починить.
 
         String values[] = Split.split(intro, SymbolsHub.get(0));
 
         //Проверка
-        System.out.println(Arrays.toString(values) + "← Список переменных после деления");
+        //System.out.println(Arrays.toString(values) + "← Список переменных после деления");
 
         //Переводим в арабские, если в списке есть римские. Все строки собираем в список чисел.
         List<Integer> Nums = new ArrayList<>();
@@ -65,7 +63,7 @@ public class StringCalc {
         }
 
         //Проверка
-        System.out.println(Nums + "← Все стало арабским и цифрами");
+        //System.out.println(Nums + "← Все стало арабским и цифрами");
 
         //Квинтесенция алгебраичности
         if (SymbolsHub.get(0).equals("+")) {
@@ -82,5 +80,5 @@ public class StringCalc {
             System.out.println(o.action(Nums.get(0), Nums.get(1)));
         } else {System.out.println("Ой-ой, не могу осилить эту алгебраичность (");}
 
-    }
-}
+    }//main
+}//StringCalc

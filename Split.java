@@ -3,8 +3,9 @@ package JM;
 import java.util.*;
 
 public class Split {
-    //Делит строку и записывает переменные в коллекцию
+
     public static String[] split (String text, String delimiter){
+
         List<String> variables = new ArrayList<>();
 
         text += delimiter;
