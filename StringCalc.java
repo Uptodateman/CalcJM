@@ -16,13 +16,16 @@ public class StringCalc {
         //Делим строку на переменные
         String[] symbolsHub = new String[] {"+","-","*","/"};
         String introHub[] = intro.split("");
-        System.out.println(Arrays.toString(introHub));
+
+        //Проверка
+        System.out.println(Arrays.toString(introHub) + "← Все введенные символы");
 
         Boolean plus = intro.contains("+"),
                 minus = intro.contains("-"),
                 multiply = intro.contains("*"),
                 divide = intro.contains("/");
 
+        //Собираем список символов
         List<String> SymbolsHub = new ArrayList<>();
         for (int i = 0; i < introHub.length; i++) {
 
@@ -34,14 +37,18 @@ public class StringCalc {
                 SymbolsHub.add("*");
             } else if (divide) {
                 SymbolsHub.add("/");
+            } else {
+                System.out.println("!");
             }
             SymbolsHub.toArray(new String[0]);
         }
 
+        //Проверка
         System.out.println(SymbolsHub + "←Список мат. символов");
 
         String values[] = Split.split(intro, SymbolsHub.get(0));
 
+        //Проверка
         System.out.println(Arrays.toString(values) + "← Список переменных после деления");
 
         //Переводим в арабские, если в списке есть римские. Все строки собираем в список чисел.
@@ -56,6 +63,8 @@ public class StringCalc {
             }
             Nums.toArray(new Integer[0]);
         }
+
+        //Проверка
         System.out.println(Nums + "← Все стало арабским и цифрами");
 
         //Квинтесенция алгебраичности
@@ -71,10 +80,7 @@ public class StringCalc {
         } else if (SymbolsHub.get(0).equals("/")) {
             BeAlgebraic o = BeAlgebraic.QUOT;
             System.out.println(o.action(Nums.get(0), Nums.get(1)));
-        } else {System.out.println("Ой-ой, не могу осилить эту алгебраичность");}
+        } else {System.out.println("Ой-ой, не могу осилить эту алгебраичность (");}
 
-        /*if (trimSymbols.size()>3) {
-            System.out.println("Я не умею в больше двух переменных");
-        }*/
     }
 }
