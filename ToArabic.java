@@ -13,11 +13,9 @@ enum ToArabic {
     X(10);
 
     private final int value;
-
     ToArabic(int value) {
         this.value = value;
     }
-
     public int toInt() {
         return value;
     }
