@@ -5,6 +5,7 @@ import java.lang.*;
 
 import static java.lang.Integer.parseInt;
 
+
 //Оставь надежду всяк сюда входящий.
 public class StringCalc {
 
@@ -67,7 +68,8 @@ public class StringCalc {
             }
 
             //Проверяем в одной ли системе счисления введены цифры
-            if (checkConditions.get(0) + checkConditions.get(1) == 1) {
+            int conditionsSum = checkConditions.get(0) + checkConditions.get(1);
+            if (conditionsSum == 1) {
                 System.out.println(AllMessages.alarm);
                 System.exit(0);
             }
@@ -75,16 +77,36 @@ public class StringCalc {
             //Квинтесенция алгебраичности
             if (plus) {
                 BeAlgebraic operation = BeAlgebraic.PLUS;
-                System.out.println(operation.action(Nums.get(0), Nums.get(1)) + AllMessages.success);
+                int result = operation.action(Nums.get(0), Nums.get(1));
+                if (conditionsSum == 0) {
+                    System.out.println(result + AllMessages.success);
+                } else if (conditionsSum == 2) {
+                    System.out.println(ToRoman.intToRoman(result) + AllMessages.success);
+                }
             } else if (minus) {
                 BeAlgebraic operation = BeAlgebraic.MINUS;
-                System.out.println(operation.action(Nums.get(0), Nums.get(1)) + AllMessages.success);
+                int result = operation.action(Nums.get(0), Nums.get(1));
+                if (conditionsSum == 0) {
+                    System.out.println(result + AllMessages.success);
+                } else if (conditionsSum == 2) {
+                    System.out.println(ToRoman.intToRoman(result) + AllMessages.success);
+                }
             } else if (multiply) {
                 BeAlgebraic operation = BeAlgebraic.PROD;
-                System.out.println(operation.action(Nums.get(0), Nums.get(1)) + AllMessages.success);
+                int result = operation.action(Nums.get(0), Nums.get(1));
+                if (conditionsSum == 0) {
+                    System.out.println(result + AllMessages.success);
+                } else if (conditionsSum == 2) {
+                    System.out.println(ToRoman.intToRoman(result) + AllMessages.success);
+                }
             } else if (divide) {
                 BeAlgebraic operation = BeAlgebraic.QUOT;
-                System.out.println(operation.action(Nums.get(0), Nums.get(1)) + AllMessages.success);
+                int result = operation.action(Nums.get(0), Nums.get(1));
+                if (conditionsSum == 0) {
+                    System.out.println(result + AllMessages.success);
+                } else if (conditionsSum == 2) {
+                    System.out.println(ToRoman.intToRoman(result) + AllMessages.success);
+                }
             }
 
         } catch (Exception condition) {
